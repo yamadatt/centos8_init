@@ -1,0 +1,40 @@
+# パッケージアップデート
+- name: dnf upgrade
+  yum: name=* state=latest
+
+# パッケージインストール
+- name: dnf install
+  yum:
+    name: "{{packages}}"
+  vars:
+    packages:
+      - langpacks-ja
+      - vim
+
+# ロケール事前確認
+- name: check locale
+  shell: localectl status
+  register: check_localectl_result
+  check_mode: no
+  changed_when: false
+
+# ロケール設定
+- name: set locale
+  shell: localectl set-locale LANG=ja_JP.utf8
+  when: "'LANG=ja_JP.utf8' not in check_localectl_result.stdout"
+
+# タイムゾーン設定
+- name: set timezone to Asia/Tokyo
+  timezone:
+    name: Asia/Tokyo
+
+# SELinux無効化
+- name: disable SELinux
+  selinux: state=disabled
+
+# firewalld無効化
+- name: disable firewalld
+  systemd:
+    name: firewalld
+    state: stopped
+    enabled: false

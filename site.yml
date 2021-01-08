@@ -1,0 +1,4 @@
+- hosts: centos8-server
+  roles:
+#    - system
+    - docker

@@ -1,0 +1,24 @@
+#- name: bbbb
+#  dnf:
+#    name: docker-ce
+#    state: latest
+#    enablerepo: https://download.docker.com/linux/centos/docker-ce.repo
+
+
+
+#- name: dnf install
+#  dnf:
+#    name: "{{packages}}"
+#  vars:
+#    packages:
+#      - git
+#      - httpd
+
+- name: upgrade all packages
+  dnf:
+    name: "*"
+    state: latest
+
+- name: dnf list
+  dnf:
+    list: installed
