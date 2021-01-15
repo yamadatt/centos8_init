@@ -12,13 +12,21 @@
 #  vars:
 #    packages:
 #      - git
-#      - httpd
 
-- name: upgrade all packages
-  dnf:
-    name: "*"
-    state: latest
+#- name: upgrade all packages
+#  dnf:
+#    name: "*"
+#    state: latest
 
 - name: dnf list
   dnf:
     list: installed
+
+
+- name: get server information
+  command: "{{ item }}"
+  with_items:
+    - 'hostname'
+    - 'cat /etc/redhat-release'
+    - 'uname -a'
+    - 'dnf list installed'
