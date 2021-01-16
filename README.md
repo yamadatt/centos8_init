@@ -53,3 +53,10 @@ DockerからGPUを使うために必要
 ## 冪等性は保たれないかも
 
 
+
+## 環境
+
+```
+$ ansible --version
+ansible 2.10.4
+```

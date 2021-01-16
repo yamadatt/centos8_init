@@ -1,13 +1,21 @@
-- name: dnf install samba
-  dnf:
-    name: "{{packages}}"
-  vars:
-    packages:
-      - ccid
-      - pcsc-lite-devel
+- name: download & unarchive pcsc-perl
+  unarchive:
+    src: http://search.cpan.org/CPAN/authors/id/W/WH/WHOM/pcsc-perl-1.4.13.tar.bz2
+    dest: "{{ src_dir }}"
+    copy: no
 
-- name: copy a directory
-  copy:
-    src: files/smb.conf
-    dest: /etc/samba
-    mode: 0577
+- name: perl Makefile.PL #makeファイルが作成されない場合のエラー処理入れたい　
+  shell: cd /usr/local/src/pcsc-perl-1.4.13/ && perl Makefile.PL
+
+
+
+- name: make all
+  make:
+    chdir: "{{ src_dir }}/pcsc-perl-1.4.13"
+#    target: all
+      
+- name: make install
+  make:
+    chdir: "{{ src_dir }}/pcsc-perl-1.4.13"
+    target: install
+  become: yes
