@@ -10,6 +10,22 @@
     packages:
       - langpacks-ja
       - vim
+      - wget
+      - git
+      - unzip
+      - bzip2
+      - gcc
+      - gcc-c++
+      - make
+#      - autogen
+      - automake
+      - kernel-devel
+      - patch
+      - perl-ExtUtils-MakeMaker
+      - libtool
+      - openssl-devel
+      - boost-devel
+      - cmake
 
 # ロケール事前確認
 - name: check locale

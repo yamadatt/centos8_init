@@ -1,0 +1,13 @@
+- name: dnf install samba
+  dnf:
+    name: "{{packages}}"
+  vars:
+    packages:
+      - ccid
+      - pcsc-lite-devel
+
+- name: copy a directory
+  copy:
+    src: files/smb.conf
+    dest: /etc/samba
+    mode: 0577

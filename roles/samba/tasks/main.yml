@@ -1,0 +1,35 @@
+- name: dnf install samba
+  dnf:
+    name: "{{packages}}"
+  vars:
+    packages:
+      - samba
+
+- name: copy a directory
+  copy:
+    src: files/smb.conf
+    dest: /etc/samba
+    mode: 0577
+
+- name: Linux User Setting for samba
+  user: name=smbuser
+
+- name: Samba User List
+  shell: pdbedit -L | awk -F":" '{print $1}'
+  register: samba_user_list
+  changed_when: false
+  check_mode: no
+
+
+- name: Add samba user  
+  shell: echo -e "passwd\npasswd\n" | pdbedit -t -a smbuser  
+  when: samba_user_list.stdout_lines.count("smbuser") < 1  
+
+- name: enable samba service
+  systemd:
+    name: smb
+    state: restarted
+    enabled: yes
+
+
+

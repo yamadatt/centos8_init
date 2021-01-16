@@ -6,12 +6,29 @@
 
 
 
-#- name: dnf install
-#  dnf:
-#    name: "{{packages}}"
-#  vars:
-#    packages:
-#      - git
+- name: dnf install git,samba
+  dnf:
+    name: "{{packages}}"
+  vars:
+    packages:
+      - git
+      - samba
+
+- name: copy a directory
+  copy:
+    src: files/smb.conf
+    dest: /etc/samba
+    mode: 0577
+
+
+
+- name: enable samba service
+  systemd:
+    name: smb
+    state: restarted
+    enabled: yes
+
+
 
 #- name: upgrade all packages
 #  dnf:
@@ -30,3 +47,5 @@
     - 'cat /etc/redhat-release'
     - 'uname -a'
     - 'dnf list installed'
+
+
