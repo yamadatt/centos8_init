@@ -7,4 +7,8 @@
 #    - system
 #    - docker
 #    - samba
-    - rec_setting
+#    - rec_setting
+#    - libarib25
+#    - px4_drv
+    - recpt1
+

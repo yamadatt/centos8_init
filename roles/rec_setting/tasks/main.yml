@@ -1,3 +1,33 @@
+- name: install epel-release
+  yum:
+    name: epel-release
+#    state: present
+
+- name: dnf install
+  yum:
+    name: "{{packages}}"
+  vars:
+    packages:
+      - dkms
+    enablerepo: epel
+
+- name: dnf install
+  yum:
+    name: "{{packages}}"
+  vars:
+    packages:
+      - nkf
+    enablerepo: PowerTools
+
+- name: dnf install
+  yum:
+    name: "{{packages}}"
+  vars:
+    packages:
+      - ccid
+#      - pcsc-lite-devel
+    enablerepo: epel
+
 - name: download & unarchive pcsc-perl
   unarchive:
     src: http://search.cpan.org/CPAN/authors/id/W/WH/WHOM/pcsc-perl-1.4.13.tar.bz2
@@ -12,10 +42,38 @@
 - name: make all
   make:
     chdir: "{{ src_dir }}/pcsc-perl-1.4.13"
-#    target: all
+    target: all
       
 - name: make install
   make:
     chdir: "{{ src_dir }}/pcsc-perl-1.4.13"
     target: install
+  become: yes
+
+
+
+- name: download & unarchive pcsc-tools
+  unarchive:
+    src: https://launchpad.net/ubuntu/+archive/primary/+files/pcsc-tools_1.4.23.orig.tar.gz
+    dest: "{{ src_dir }}"
+    copy: no
+
+
+- name: make all
+  make:
+    chdir: "{{ src_dir }}/pcsc-tools-1.4.23"
+    target: all
+      
+- name: make install
+  make:
+    chdir: "{{ src_dir }}/pcsc-tools-1.4.23"
+    target: install
+  become: yes
+
+
+
+- name: git_clone
+  git: 
+    repo: "https://github.com/stz2012/libarib25.git"
+    dest: "{{ src_dir }}/libarib25"
   become: yes

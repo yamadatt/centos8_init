@@ -1,0 +1,21 @@
+- name: download & Linux_Driver
+  unarchive:
+    src: "http://plex-net.co.jp/download/linux/Linux_Driver.zip"
+    dest: "{{ src_dir }}"
+    copy: no
+
+- name: ./configure
+  shell: "sh ./configure --enable-b25"
+  args:
+    chdir: "{{ src_dir }}/Linux_Driver/MyRecpt1/MyRecpt1/recpt1"
+
+- name: make all
+  make:
+    chdir: "{{ src_dir }}/Linux_Driver/MyRecpt1/MyRecpt1/recpt1"
+    target: all
+      
+- name: make install
+  make:
+    chdir: "{{ src_dir }}/Linux_Driver/MyRecpt1/MyRecpt1/recpt1"
+    target: install
+  become: yes

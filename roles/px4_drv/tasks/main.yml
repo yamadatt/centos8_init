@@ -1,0 +1,36 @@
+- name: git_clone px4 driver
+  git: 
+    repo: "https://github.com/nns779/px4_drv.git"
+    dest: "{{ src_dir }}/px4_drv"
+
+- name: make all
+  make:
+    chdir: "{{ src_dir }}/px4_drv/fwtool"
+
+
+- name: download & pxw3u4_BDA_ver1x64.zip
+  unarchive:
+    src: "http://plex-net.co.jp/plex/pxw3u4/pxw3u4_BDA_ver1x64.zip"
+    dest: "{{ src_dir }}/px4_drv/fwtool"
+    copy: no
+
+- name: perl Makefile.PL　
+  shell: "cd {{ src_dir }}/px4_drv/fwtool && ./fwtool pxw3u4_BDA_ver1x64/PXW3U4.sys it930x-firmware.bin"
+
+- name: copy a directory
+  copy:
+    src: "{{ src_dir }}/px4_drv/fwtool/it930x-firmware.bin"
+    dest: "/lib/firmware/"
+    mode: preserve
+
+- name: copy dkms.install
+  copy:
+    src: "files/dkms.install"
+    dest: "{{ src_dir }}/px4_drv/fwtool"
+    mode: 777
+
+
+- name: bash dkms.install
+  shell: "bash dkms.install"
+  args:
+    chdir: "{{ src_dir }}/px4_drv/fwtool"

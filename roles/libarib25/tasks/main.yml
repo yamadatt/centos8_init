@@ -1,0 +1,22 @@
+- name: git_clone arib25
+  git: 
+    repo: "https://github.com/stz2012/libarib25.git"
+    dest: "{{ src_dir }}/libarib25"
+  become: yes
+
+
+- name: cmake arib25
+  shell: "cmake ."
+  args:
+    chdir: "{{ src_dir }}/libarib25"
+
+- name: make all
+  make:
+    chdir: "{{ src_dir }}/libarib25"
+    target: all
+      
+- name: make install
+  make:
+    chdir: "{{ src_dir }}/libarib25"
+    target: install
+  become: yes
