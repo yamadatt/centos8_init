@@ -1,3 +1,10 @@
+- name: set hostname
+  become: true
+  hostname: 
+    name: centos8.3
+
+
+
 # パッケージアップデート
 - name: dnf upgrade
   yum: name=* state=latest
