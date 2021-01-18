@@ -3,8 +3,7 @@
     repo: "https://github.com/stz2012/libarib25.git"
     dest: "{{ src_dir }}/libarib25"
   become: yes
-
-
+  
 - name: cmake arib25
   shell: "cmake ."
   args:

@@ -13,9 +13,9 @@ CentOS8.3の初期設定用のansible playbook
 ## ansible側
 
 対象ホストの書き換え
-localhostが対象サーバになっているので、これをIPアドレスに書き換える
+localhostが対象サーバになっているので、これをターゲットサーバのIPアドレスに書き換える
 
-## playbookで実施すること
+## playbook概要
 
 ### packageの最新化
 
