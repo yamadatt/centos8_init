@@ -11,4 +11,7 @@
 #    - libarib25
 #    - px4_drv
     - recpt1
+    - nvidia-driver
+    - Container
+
 

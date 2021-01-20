@@ -1,9 +1,10 @@
+# CentOS8.3の基本的な設定
+
+# ホスト名の設定
 - name: set hostname
   become: true
   hostname: 
-    name: centos8.3
-
-
+    name: centos83
 
 # パッケージアップデート
 - name: dnf upgrade

@@ -28,7 +28,7 @@
     packages:
       - ccid
       - pcsc-lite-devel
-    enablerepo: epel
+    enablerepo: epel-release
 
 - name: download & unarchive pcsc-perl
   unarchive:

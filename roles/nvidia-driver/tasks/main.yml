@@ -1,0 +1,24 @@
+# nvidia-driverのインストール
+# GeForce GTX 1650のドライバ
+# 以下のURLを参考
+# https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=CentOS&target_version=8&target_type=rpmnetwork
+
+# 冪等性がないので、後で対応する
+
+- name: dnf manager
+  shell: "dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-rhel8.repo"
+
+- name: dnf clean all
+  shell: "dnf clean all"
+
+- name: dnf -y module install nvidia-driver:latest-dkms
+  shell: "dnf -y module install nvidia-driver:latest-dkms"
+
+- name: dnf install cuda
+  dnf:
+    name: "{{packages}}"
+  vars:
+    packages:
+      - cuda
+
+

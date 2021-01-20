@@ -1,3 +1,5 @@
+# 録画コマンドrecpt1インストール
+
 - name: download & Linux_Driver
   unarchive:
     src: "http://plex-net.co.jp/download/linux/Linux_Driver.zip"

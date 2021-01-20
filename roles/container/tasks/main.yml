@@ -1,0 +1,26 @@
+# Setting up NVIDIA Container Toolkit
+
+
+- name: curl
+  shell: "curl -s -L https://nvidia.github.io/nvidia-docker/centos8/nvidia-docker.repo | sudo tee /etc/yum.repos.d/nvidia-docker.repo"
+
+
+- name: dnf clean expire-cache --refresh
+  shell: "dnf clean expire-cache --refresh"
+
+
+- name: dnf install cuda
+  dnf:
+    name: "{{packages}}"
+  vars:
+    packages:
+      - nvidia-docker2
+
+
+- name: restart docker service
+  systemd:
+    name: docker
+    state: restarted
+    enabled: yes
+    become: yes
+

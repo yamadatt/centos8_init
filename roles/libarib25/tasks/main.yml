@@ -1,3 +1,5 @@
+# arib25のいんす取る
+
 - name: git_clone arib25
   git: 
     repo: "https://github.com/stz2012/libarib25.git"
