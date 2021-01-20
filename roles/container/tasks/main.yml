@@ -1,4 +1,7 @@
 # Setting up NVIDIA Container Toolkit
+# 以下のURL参照
+# https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#installing-on-centos-7-8
+
 
 
 - name: curl

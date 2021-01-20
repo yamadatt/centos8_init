@@ -10,8 +10,8 @@
 #    - pcsc
 #    - libarib25
 #    - px4_drv
-    - recpt1
-    - nvidia-driver
-    - Container
-
+#    - recpt1
+#    - nvidia-driver
+#    - Container
+    - get_info
 

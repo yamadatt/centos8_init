@@ -7,7 +7,7 @@
     packages:
       - samba
 
-- name: copy a smb.conf
+- name: copy smb.conf
   copy:
     src: files/smb.conf
     dest: /etc/samba

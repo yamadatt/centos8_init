@@ -1,4 +1,4 @@
-# arib25のいんす取る
+# arib25のインストール
 
 - name: git_clone arib25
   git: 
