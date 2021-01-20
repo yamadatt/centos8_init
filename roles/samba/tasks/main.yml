@@ -1,3 +1,5 @@
+# sambaのインストールと設定
+
 - name: dnf install samba
   dnf:
     name: "{{packages}}"
@@ -5,7 +7,7 @@
     packages:
       - samba
 
-- name: copy a directory
+- name: copy a smb.conf
   copy:
     src: files/smb.conf
     dest: /etc/samba
@@ -20,7 +22,6 @@
   changed_when: false
   check_mode: no
 
-
 - name: Add samba user  
   shell: echo -e "passwd\npasswd\n" | pdbedit -t -a smbuser  
   when: samba_user_list.stdout_lines.count("smbuser") < 1  
@@ -30,6 +31,3 @@
     name: smb
     state: restarted
     enabled: yes
-
-
-

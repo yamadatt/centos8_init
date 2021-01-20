@@ -1,3 +1,5 @@
+
+
 - name: install epel-release
   dnf:
     name: epel-release
@@ -9,7 +11,7 @@
   vars:
     packages:
       - dkms
-    enablerepo: epel
+    enablerepo: epel-release
 
 - name: dnf install
   dnf:
@@ -25,7 +27,7 @@
   vars:
     packages:
       - ccid
-#      - pcsc-lite-devel
+      - pcsc-lite-devel
     enablerepo: epel
 
 - name: download & unarchive pcsc-perl

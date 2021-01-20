@@ -1,18 +1,18 @@
-#- name: bbbb
-#  dnf:
-#    name: docker-ce
-#    state: latest
-#    enablerepo: https://download.docker.com/linux/centos/docker-ce.repo
+# docker,docker-composeのインストール
+
+- name: dnf install docker-ce
+ dnf:
+   name: docker-ce
+   state: latest
+   enablerepo: https://download.docker.com/linux/centos/docker-ce.repo
 
 
-
-- name: dnf install git,samba
+- name: dnf install git
   dnf:
     name: "{{packages}}"
   vars:
     packages:
       - git
-      - samba
 
 - name: copy a directory
   copy:
@@ -21,19 +21,22 @@
     mode: 0577
 
 
-
-- name: enable samba service
+- name: start & enable docker service
   systemd:
-    name: smb
-    state: restarted
+    name: docker
+    state: started
     enabled: yes
+    become: yes
 
+- name: docker-compose1.27.4のインストール（バージョンは固定している）
+get_url:
+  url:  "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)"
+  dest: "/usr/local/bin/docker-compose"
+  mode: +x
+  become: yes
 
+# 構成情報の取得
 
-#- name: upgrade all packages
-#  dnf:
-#    name: "*"
-#    state: latest
 
 - name: dnf list
   dnf:
