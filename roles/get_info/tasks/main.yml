@@ -1,17 +1,13 @@
 # 各種情報の出力
 
-- name: echo remote stdout
-  command: "docker --version"
-  register: docker_version
-- name: echo remote path
-  debug: var=docker_version.stdout
 
-# [Ansibleのplaybookで\`with\_items\`等でループ処理したすべての実行結果を\`register\`してdebugで取り出す方法 \- Qiita]
-# (https://qiita.com/tbuchi888/items/031c918ce9e542a37cc4)
+- name: information
+  shell: "{{ item }}"
+  with_items:
+    - "docker --version"
+    - "docker-compose --version"
+    - "ansible --version"
+  register: result
 
-- raw:  "{{ item.cmd }}"
-  register: CMD_RESULT
-  with_items: '{{ TEST_CMD }}'
-  vars:
-    TEST_CMD:
-      - docker --version
+- debug: var="result.results.{{item}}.stdout_lines"
+  with_sequence: start=0 end=2
