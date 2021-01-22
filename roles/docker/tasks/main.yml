@@ -1,24 +1,10 @@
 # docker,docker-composeのインストール
 
 - name: dnf install docker-ce
- dnf:
-   name: docker-ce
-   state: latest
-   enablerepo: https://download.docker.com/linux/centos/docker-ce.repo
-
-
-- name: dnf install git
   dnf:
-    name: "{{packages}}"
-  vars:
-    packages:
-      - git
-
-- name: copy a directory
-  copy:
-    src: files/smb.conf
-    dest: /etc/samba
-    mode: 0577
+    name: docker-ce
+    state: latest
+    enablerepo: https://download.docker.com/linux/centos/docker-ce.repo
 
 
 - name: start & enable docker service
@@ -26,29 +12,11 @@
     name: docker
     state: started
     enabled: yes
-    become: yes
 
 - name: docker-compose1.27.4のインストール（バージョンは固定している）
-get_url:
-  url:  "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)"
-  dest: "/usr/local/bin/docker-compose"
-  mode: +x
+  get_url:
+    url:  "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-Linux-x86_64"
+    dest: "/usr/local/bin/docker-compose"
+    mode: +x
   become: yes
-
-# 構成情報の取得
-
-
-- name: dnf list
-  dnf:
-    list: installed
-
-
-- name: get server information
-  command: "{{ item }}"
-  with_items:
-    - 'hostname'
-    - 'cat /etc/redhat-release'
-    - 'uname -a'
-    - 'dnf list installed'
-
 
