@@ -20,6 +20,9 @@
 - name: Remote RPM install with dnf(for nkf install)
   yum: name=http://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/n/nkf-2.1.3-5.el7.x86_64.rpm
 
+- name: Remote RPM install with dnf(for pcsc-lite-devel install)
+  yum: name=https://rpmfind.net/linux/centos/8.3.2011/PowerTools/x86_64/os/Packages/pcsc-lite-devel-1.8.23-3.el8.x86_64.rpm
+
 
 - name: dnf install
   dnf:
@@ -27,7 +30,6 @@
   vars:
     packages:
       - ccid
-      - pcsc-lite-devel
     enablerepo: epel-release
 
 - name: download & unarchive pcsc-perl

@@ -7,8 +7,8 @@
     # - system
     # - docker
     # - samba
-    - pcsc
-    - libarib25
+    # - pcsc
+    # - libarib25
     - px4_drv
     - recpt1
     - nvidia-driver
