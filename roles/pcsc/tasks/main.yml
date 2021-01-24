@@ -13,13 +13,13 @@
       - dkms
     enablerepo: epel-release
 
-- name: dnf install
-  dnf:
-    name: "{{packages}}"
-  vars:
-    packages:
-      - nkf
-    enablerepo: PowerTools
+
+- name: import key　
+  shell: rpm --import http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+
+- name: Remote RPM install with dnf(for nkf install)
+  yum: name=http://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/n/nkf-2.1.3-5.el7.x86_64.rpm
+
 
 - name: dnf install
   dnf:

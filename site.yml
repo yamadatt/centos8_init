@@ -4,9 +4,9 @@
     src_dir: "{{ prefix_dir }}/src"
     bin_dir: "{{ prefix_dir }}/bin"
   roles:
-#    - system
-#    - docker
-#    - samba
+    # - system
+    # - docker
+    # - samba
     - pcsc
     - libarib25
     - px4_drv
