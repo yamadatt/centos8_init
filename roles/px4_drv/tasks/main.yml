@@ -28,11 +28,11 @@
 - name: copy dkms.install
   copy:
     src: "files/dkms.install"
-    dest: "{{ src_dir }}/px4_drv/fwtool"
+    dest: "{{ src_dir }}/px4_drv"
     mode: 777
 
 
 - name: bash dkms.install
   shell: "bash dkms.install"
   args:
-    chdir: "{{ src_dir }}/px4_drv/fwtool"
+    chdir: "{{ src_dir }}/px4_drv"
