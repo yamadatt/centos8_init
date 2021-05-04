@@ -1,6 +1,14 @@
 # 各種情報の出力
 
 
+- name: ping
+  ping:
+  register: result
+
+- name: debug
+  debug: 
+    msg: "{{ result }}"
+
 - name: information
   shell: "{{ item }}"
   with_items:
