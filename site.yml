@@ -12,6 +12,10 @@
     #- px4_drv
     #- recpt1
     #- nvidia-driver
+<<<<<<< HEAD
     #- container
+=======
+    # - container
+>>>>>>> d85771a01633be228dabd12815a1eb44275d20ab
     - get_info
 
