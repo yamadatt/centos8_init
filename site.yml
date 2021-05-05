@@ -12,6 +12,6 @@
     #- px4_drv
     #- recpt1
     #- nvidia-driver
-    - container
+    # - container
     - get_info
 
