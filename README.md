@@ -61,6 +61,12 @@ DockerからGPUを使うために必要
 
 ## 環境
 
+動作確認をした環境は以下。
+
+* CentOS 8.3
+* ansible 
+
+
 ```
 $ ansible --version
 ansible 2.10.4
@@ -68,7 +74,14 @@ ansible 2.10.4
 
 ## 使い方
 
-docker run -v "${PWD}":/work:ro -v ~/.ansible/roles:/root/.ansible/roles -v ~/.ssh:/root/.ssh:ro --rm satken2/ansible ansible-playbook -i /work/hosts /work/site.yml
 
 
-ansible-playbook -i　site.yml
+事前に対象ホストにSSHして、鍵を登録しておく。
+
+
+
+```
+git clone https://github.com/yamadatt/centos8_init
+cd centos8_init/
+ansible-playbook -i hosts site.yml --ask-pass
+```
