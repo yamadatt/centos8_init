@@ -4,14 +4,14 @@
     src_dir: "{{ prefix_dir }}/src"
     bin_dir: "{{ prefix_dir }}/bin"
   roles:
-    # - system
-    # - docker
-    # - samba
-    # - pcsc
-    # - libarib25
+    #- system
+    #- docker
+    #- samba
+    #- pcsc
+    #- libarib25
     #- px4_drv
     #- recpt1
     #- nvidia-driver
-    - container
+    #- container
     - get_info
 

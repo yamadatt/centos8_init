@@ -22,8 +22,9 @@
 - name: copy a directory
   copy:
     src: "{{ src_dir }}/px4_drv/fwtool/it930x-firmware.bin"
-    dest: "/lib/firmware/"
+    dest: "/lib/firmware/it930x-firmware.bin"
     mode: preserve
+    remote_src: yes
 
 - name: copy dkms.install
   copy:
