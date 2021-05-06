@@ -69,15 +69,21 @@ DockerからGPUを使うために必要
 
 ```
 $ ansible --version
-ansible 2.10.4
+ansible 2.10.9
+  config file = None
+  configured module search path = ['/root/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/local/lib/python3.6/site-packages/ansible
+  executable location = /usr/local/bin/ansible
+  python version = 3.6.8 (default, Aug 24 2020, 17:57:11) [GCC 8.3.1 20191121 (Red Hat 8.3.1-5)]
 ```
 
 ## 使い方
 
-
+### 事前準備
 
 事前に対象ホストにSSHして、鍵を登録しておく。
 
+### コマンド
 
 
 ```
